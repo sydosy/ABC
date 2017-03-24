@@ -2,8 +2,8 @@ run();
 
 function run() {
     let inputElements = document.body.getElementsByTagName('input');
-    for (let j = 0; j < inputElements.length; j++) {
-        if (inputElements[j].type !== 'password') {
+    for (let i = 0; i < inputElements.length; i++) {
+        if (inputElements[i].type !== 'password') {
             continue;
         }
 
