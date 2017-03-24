@@ -17,7 +17,7 @@ function run() {
 function runHttpAlert() {
     chrome.storage.local.get('whiteList', function (value) {
         let whiteList = value.whiteList;
-        if (whiteList != null && whiteList.indexOf(window.location.href) >= 0) {
+        if (whiteList != null && whiteList.indexOf(window.location.hostname) >= 0) {
             return;
         }
         showHttpAlertPopup(whiteList);
@@ -36,7 +36,7 @@ function showHttpAlertPopup(whiteList) {
             if (!whiteList) {
                 whiteList = [];
             }
-            whiteList.push(window.location.href);
+            whiteList.push(window.location.hostname);
             chrome.storage.local.set({'whiteList': whiteList}, function () {
                 console.log(whiteList);
             });
