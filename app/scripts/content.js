@@ -1,33 +1,30 @@
 run();
 
 function run() {
-    let protocol = window.location.protocol;
-    if (protocol !== 'http:') {
-        return;
-    }
+    let inputElements = document.body.getElementsByTagName('input');
+    for (let j = 0; j < inputElements.length; j++) {
+        if (inputElements[j].type !== 'password') {
+            continue;
+        }
 
-    let formElements = document.forms;
-    for (let i = 0; i < formElements.length; i++) {
-        let inputElements = formElements[i].getElementsByTagName('input');
-        for (let j = 0; j < inputElements.length; j++) {
-            if (inputElements[j].type !== 'password') {
-                continue;
-            }
-
-            chrome.storage.local.get('whiteList', function (value) {
-                let whiteList = value.whiteList;
-                if (whiteList != null && whiteList.indexOf(window.location.href) >= 0) {
-                    return;
-                }
-                showHTTPAlertPopup(whiteList);
-            });
-
-            break;
+        let protocol = window.location.protocol;
+        if (protocol === 'http:') {
+            runHttpAlert()
         }
     }
 }
 
-function showHTTPAlertPopup(whiteList) {
+function runHttpAlert() {
+    chrome.storage.local.get('whiteList', function (value) {
+        let whiteList = value.whiteList;
+        if (whiteList != null && whiteList.indexOf(window.location.href) >= 0) {
+            return;
+        }
+        showHttpAlertPopup(whiteList);
+    });
+}
+
+function showHttpAlertPopup(whiteList) {
     swal({
         text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
         input: 'checkbox',
