@@ -19,7 +19,7 @@ function alertHttpIfNeeded() {
     chrome.storage.local.get('whiteList', function (storage) {
         let whiteList = storage.whiteList;
         //ドメインがホワイトリストに含まれている
-        if (whiteList != null && whiteList.indexOf(window.location.hostname) >= 0) {
+        if (whiteList && whiteList.indexOf(window.location.hostname) >= 0) {
             return;
         }
 
