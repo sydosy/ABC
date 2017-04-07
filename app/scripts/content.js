@@ -26,6 +26,7 @@ function alertHttpIfNeeded() {
         //警告ポップアップを表示
         swal({
             text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
+            type: 'warning',
             input: 'checkbox',
             inputPlaceholder: '今後このページで警告を表示しない',
             confirmButtonText: '確認'
