@@ -7,32 +7,34 @@ function run() {
             continue;
         }
 
-        let protocol = window.location.protocol;
-        if (protocol === 'http:') {
-            runHttpAlert()
+        if (window.location.protocol === 'http:') {
+            alertHttpIfNeeded();
         }
+
+        break;
     }
 }
 
-function runHttpAlert() {
-    chrome.storage.local.get('whiteList', function (value) {
-        let whiteList = value.whiteList;
+function alertHttpIfNeeded() {
+    chrome.storage.local.get('whiteList', function (storage) {
+        let whiteList = storage.whiteList;
+        //ドメインがホワイトリストに含まれている
         if (whiteList != null && whiteList.indexOf(window.location.hostname) >= 0) {
             return;
         }
-        showHttpAlertPopup(whiteList);
-    });
-}
 
-function showHttpAlertPopup(whiteList) {
-    swal({
-        text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
-        input: 'checkbox',
-        inputPlaceholder: '今後このページで警告を表示しない',
-        confirmButtonText: '確認'
-    }).then(function (result) {
-        //”今後このページで警告を表示しない”がチェックされた状態で確認ボタンが押された
-        if (result === 1) {
+        //警告ポップアップを表示
+        swal({
+            text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
+            input: 'checkbox',
+            inputPlaceholder: '今後このページで警告を表示しない',
+            confirmButtonText: '確認'
+        }).then(function (result) {
+            //”今後このページで警告を表示しない”がチェックされていない
+            if (result !== 1) {
+                return;
+            }
+
             if (!whiteList) {
                 whiteList = [];
             }
@@ -40,6 +42,6 @@ function showHttpAlertPopup(whiteList) {
             chrome.storage.local.set({'whiteList': whiteList}, function () {
                 console.log(whiteList);
             });
-        }
+        });
     });
 }
