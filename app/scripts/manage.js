@@ -15,7 +15,7 @@ chrome.storage.local.get('whiteList', function (storage) {
 });
 
 $(document).ready(function () {
-    $('#del-button').on('click', function () {
+    $('#del-button1').on('click', function () {
         $('#select-white-list').find('option:selected').remove();
-    })
+    });
 });
