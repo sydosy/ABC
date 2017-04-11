@@ -18,8 +18,12 @@ function run() {
 function alertHttpIfNeeded() {
     chrome.storage.local.get('whiteList', function (storage) {
         let whiteList = storage.whiteList;
+        if (!whiteList) {
+            whiteList = {};
+        }
+
         //ドメインがホワイトリストに含まれている
-        if (whiteList && whiteList.indexOf(window.location.hostname) >= 0) {
+        if (window.location.hostname in whiteList) {
             return;
         }
 
@@ -36,12 +40,8 @@ function alertHttpIfNeeded() {
                 return;
             }
 
-            if (!whiteList) {
-                whiteList = [];
-            }
-            whiteList.push(window.location.hostname);
+            whiteList[window.location.hostname] = window.location.href;
             chrome.storage.local.set({'whiteList': whiteList}, function () {
-                console.log(whiteList);
             });
         });
     });
