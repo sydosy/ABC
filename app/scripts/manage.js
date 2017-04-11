@@ -5,12 +5,12 @@ chrome.storage.local.get('whiteList', function (storage) {
         id: 'select-white-list',
         size: 10
     });
-    whiteList.forEach(function (url) {
+    for(let url in whiteList) {
         selectList.append($('<option></option>', {
             value: url,
             text: url
         }));
-    });
+    }
     list.append(selectList);
 });
 
