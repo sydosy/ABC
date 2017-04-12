@@ -11,7 +11,7 @@ chrome.storage.local.get('whiteList', function (storage) {
             text: url
         }));
     }
-    list.append(selectList);
+    list.prepend(selectList);
 
     $('#del-button1').on('click', function () {
         let removeUrl = $('#select-white-list').find('option:selected');
