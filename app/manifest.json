@@ -4,7 +4,8 @@
   "manifest_version": 2,
   "content_scripts": [{
     "matches": [ "http://*/*", "https://*/*" ],
-    "js": [ "scripts/content.js" ]
+    "css" : ["styles/sweetalert2.min.css"],
+    "js": [ "scripts/sweetalert2.min.js", "scripts/content.js" ]
   }],
   "permissions": [
     "storage"
