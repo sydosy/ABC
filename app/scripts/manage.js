@@ -10,6 +10,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
     $('#del-white-list-button').on('click', function () {
         let checkedRows = $('#white-list-table').find('tbody').find('input:checked').parents('tr');
         deleteURL(whiteList, checkedRows);
+        $('#del-white-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'whiteList': whiteList}, function () {
             console.log('save!');
@@ -28,6 +29,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
     $('#del-domain-list-button').on('click', function () {
         let checkedRows = $('#domain-list-table').find('tbody').find('input:checked').parents('tr');
         deleteURL(domainList, checkedRows);
+        $('#del-domain-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'domainList': domainList}, function () {
             console.log('save!');
