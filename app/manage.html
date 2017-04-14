@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>List Manager</title>
 
     <script src="scripts/jquery-3.2.0.slim.min.js"></script>
-    <link rel="stylesheet" href="styles/material.min.css">
+    <link rel="stylesheet" href="styles/material.min.css"/>
     <script src="scripts/material.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 
     <script src="scripts/manage.js"></script>
+    <link rel="stylesheet" href="styles/manage.css"/>
 </head>
 <body>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -21,16 +22,42 @@
             </div>
         </div>
     </div>
-
     <div class="mdl-tabs__panel is-active" id="white-list">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                id="del-button1" disabled>Delete
-        </button>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
+                       id="white-list-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">White List</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        id="del-button1" disabled>Delete
+                </button>
+            </div>
+        </div>
     </div>
+
     <div class="mdl-tabs__panel" id="domain-list">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                id="del-button2" disabled>Delete
-        </button>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col">
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" id="domain-list-table">
+                    <thead>
+                    <tr>
+                        <th class="mdl-data-table__cell--non-numeric">Domin List</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        id="del-button2" disabled>Delete
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 </body>
