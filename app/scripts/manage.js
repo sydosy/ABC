@@ -13,7 +13,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
         $('#del-white-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'whiteList': whiteList}, function () {
-            console.log('save!');
+            console.log('save whiteList!');
         });
     });
 
@@ -32,7 +32,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
         $('#del-domain-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'domainList': domainList}, function () {
-            console.log('save!');
+            console.log('save domainList!');
         });
     });
 
@@ -63,3 +63,32 @@ function deleteURL(list, tr) {
     });
     tr.remove();
 }
+
+function addTestURLs() {
+    let whiteList = {
+        'http://www.hoge1.com': 1,
+        'http://www.hoge2.com': 2,
+        'http://www.hoge3.com': 3,
+        'http://www.hoge4.com': 4,
+        'http://www.hoge5.com': 5
+    };
+    chrome.storage.local.set({'whiteList': whiteList}, function () {
+        console.log('save whiteList');
+    });
+    let domainList = {
+        'http://www.hoge1.com': 1,
+        'http://www.hoge2.com': 2,
+        'http://www.hoge3.com': 3,
+        'http://www.hoge4.com': 4,
+        'http://www.hoge5.com': 5
+    };
+    chrome.storage.local.set({'domainList': domainList}, function () {
+        console.log('save domainList');
+    });
+}
+
+$(function () {
+    $('#test-button').on('click', function () {
+        addTestURLs();
+    })
+});
