@@ -9,7 +9,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
 
     $('#del-white-list-button').on('click', function () {
         let checkedRows = $('#white-list-table').find('tbody').find('input:checked').parents('tr');
-        deleteURL(whiteList, checkedRows);
+        deleteDomain(whiteList, checkedRows);
         $('#del-white-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'whiteList': whiteList}, function () {
@@ -17,7 +17,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
         });
     });
 
-    //ホワイトリストのURLが1つでもチェックされていればボタンを有効化
+    //ホワイトリストのDomainが1つでもチェックされていればボタンを有効化
     $('#white-list-table').change(function () {
         if ($(this).find('tbody').find('input:checked').length > 0) {
             $('#del-white-list-button').prop('disabled', false);
@@ -28,7 +28,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
 
     $('#del-domain-list-button').on('click', function () {
         let checkedRows = $('#domain-list-table').find('tbody').find('input:checked').parents('tr');
-        deleteURL(domainList, checkedRows);
+        deleteDomain(domainList, checkedRows);
         $('#del-domain-list-button').prop('disabled', true);
 
         chrome.storage.local.set({'domainList': domainList}, function () {
@@ -36,7 +36,7 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
         });
     });
 
-    //ドメインリストのURLが1つでもチェックされていればボタンを有効化
+    //ドメインリストのDomainが1つでもチェックされていればボタンを有効化
     $('#domain-list-table').change(function () {
         if ($(this).find('tbody').find('input:checked').length > 0) {
             $('#del-domain-list-button').prop('disabled', false);
@@ -47,24 +47,24 @@ chrome.storage.local.get(['whiteList', 'domainList'], function (storage) {
 });
 
 function setTable(list, tbody) {
-    for (let url in list) {
+    for (let domain in list) {
         tbody.append($('<tr></tr>').append($('<td></td>', {
             class: 'mdl-data-table__cell--non-numeric',
-            text: url
+            text: domain
         })));
     }
 }
 
-function deleteURL(list, tr) {
-    $(tr.children('td')).each(function (i, url) {
-        if (url.getAttribute('class') === 'mdl-data-table__cell--non-numeric') {
-            delete list[url.innerText];
+function deleteDomain(list, tr) {
+    $(tr.children('td')).each(function (i, domain) {
+        if (domain.getAttribute('class') === 'mdl-data-table__cell--non-numeric') {
+            delete list[domain.innerText];
         }
     });
     tr.remove();
 }
 
-function addTestURLs() {
+function addTestDomains() {
     let whiteList = {
         'http://www.hoge1.com': 1,
         'http://www.hoge2.com': 2,
@@ -89,6 +89,6 @@ function addTestURLs() {
 
 $(function () {
     $('#test-button').on('click', function () {
-        addTestURLs();
+        addTestDomains();
     })
 });
