@@ -57,7 +57,7 @@ function setTable(list, tbody) {
 
 function deleteURL(list, tr) {
     $(tr.children('td')).each(function (i, url) {
-        if (i % 2 === 1) {
+        if (url.getAttribute('class') === 'mdl-data-table__cell--non-numeric') {
             delete list[url.innerText];
         }
     });
