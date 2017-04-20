@@ -29,6 +29,7 @@ function alertHttpIfNeeded() {
 
         //ドメインがホワイトリストに含まれている
         if (window.location.hostname in whiteList) {
+            registerDomainIfNeeded();
             return;
         }
 
@@ -47,6 +48,7 @@ function alertHttpIfNeeded() {
 
             whiteList[window.location.hostname] = window.location.href;
             chrome.storage.local.set({ 'whiteList': whiteList }, function () {
+                registerDomainIfNeeded();
             });
         });
     });
