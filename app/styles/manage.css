@@ -1,0 +1,22 @@
+.mdl-data-table {
+    width: 100%;
+}
+
+.mdl-data-table th:first-of-type {
+    text-align: left;
+    width: 40px;
+}
+
+.mdl-data-table td:last-of-type, .mdl-data-table th:last-of-type {
+    width: 100%;
+}
+
+.mdl-data-table thead {
+    display: block;
+}
+
+.mdl-data-table tbody {
+    height: 200px;
+    display: block;
+    overflow-y: scroll;
+}
