@@ -14,20 +14,15 @@
 </head>
 <body>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col">
-            <div class="mdl-tabs__tab-bar">
-                <a href="#white-list" class="mdl-tabs__tab is-active">White List</a>
-                <a href="#domain-list" class="mdl-tabs__tab">Domain List</a>
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="test-button">
-                    <i class="material-icons">add</i>
-                </button>
-            </div>
-        </div>
+    <div class="mdl-tabs__tab-bar">
+        <a href="#white-list" class="mdl-tabs__tab is-active">White List</a>
+        <a href="#domain-list" class="mdl-tabs__tab">Domain List</a>
     </div>
+
     <div class="mdl-tabs__panel is-active" id="white-list">
         <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4-col">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell--4-col">
                 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
                        id="white-list-table">
                     <thead>
@@ -42,13 +37,16 @@
                         id="del-white-list-button" disabled>Delete
                 </button>
             </div>
+            <div class="mdl-layout-spacer"></div>
         </div>
     </div>
 
     <div class="mdl-tabs__panel" id="domain-list">
         <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4-col">
-                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" id="domain-list-table">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-cell--4-col">
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
+                       id="domain-list-table">
                     <thead>
                     <tr>
                         <th class="mdl-data-table__cell--non-numeric">Domain List</th>
@@ -60,6 +58,7 @@
                         id="del-domain-list-button" disabled>Delete
                 </button>
             </div>
+            <div class="mdl-layout-spacer"></div>
         </div>
     </div>
 </div>
