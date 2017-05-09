@@ -1,5 +1,6 @@
 .mdl-data-table {
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .mdl-data-table th:first-of-type {
@@ -16,7 +17,15 @@
 }
 
 .mdl-data-table tbody {
-    height: 200px;
+    height: 60vh;
     display: block;
     overflow-y: scroll;
+}
+
+.mdl-data-table tbody tr.is-selected {
+    background-color: #ffc;
+}
+
+.mdl-data-table tbody tr {
+    background-color: #e3e3e3;
 }
