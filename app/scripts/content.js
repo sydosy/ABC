@@ -7,22 +7,16 @@ async function run() {
             continue;
         }
 
-        switch (window.location.protocol) {
-            case 'http:':
-                await alertHttpIfNeeded();
-                registerDomainIfNeeded();
-                break;
-            case 'https:':
-                registerDomainIfNeeded();
-                break;
+        if(window.location.protocol === 'http:'){
+            await alertHttpIfNeeded();
         }
+        registerDomainIfNeeded();
 
         break;
     }
 }
 
-function alertHttpIfNeeded() {
-    return new Promise(async (resolve) => {
+async function alertHttpIfNeeded() {
         let whiteList = await getLocalStorage('whiteList');
         if (!whiteList) {
             whiteList = {};
@@ -30,32 +24,22 @@ function alertHttpIfNeeded() {
 
         //ドメインがホワイトリストに含まれている
         if (window.location.hostname in whiteList) {
-            resolve();
             return;
         }
 
-        //警告ポップアップを表示
-        swal({
+        let result = await swal({
             text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
             type: 'warning',
             input: 'checkbox',
+            inputValue: 0,
             inputPlaceholder: '今後このページで警告を表示しない',
             confirmButtonText: '確認'
-        }).then(async (result) => {
-            //”今後このページで警告を表示しない”がチェックされていない
-            if (result !== 1) {
-                resolve();
-                return;
-            }
-
+        });
+        //”今後このページで警告を表示しない”がチェックされている
+        if (result === 1){
             whiteList[window.location.hostname] = window.location.href;
             await setLocalStorage({ 'whiteList': whiteList });
-            resolve();
-        }).catch(() => {
-            //ポップアップの外側がクリックされた
-            resolve();
-        });
-    });
+        }
 }
 
 async function registerDomainIfNeeded() {
