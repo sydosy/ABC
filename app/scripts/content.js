@@ -34,6 +34,9 @@ async function alertHttpIfNeeded() {
         inputValue: 0,
         inputPlaceholder: '今後このページで警告を表示しない',
         confirmButtonText: '確認'
+    }).catch(() => {
+        //ポップアップの外側がクリックされた
+        return Promise.resolve();
     });
     //”今後このページで警告を表示しない”がチェックされている
     if (result === 1) {
