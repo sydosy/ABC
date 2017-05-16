@@ -7,7 +7,7 @@ async function run() {
             continue;
         }
 
-        if(window.location.protocol === 'http:'){
+        if (window.location.protocol === 'http:') {
             await alertHttpIfNeeded();
         }
         registerDomainIfNeeded();
@@ -17,29 +17,29 @@ async function run() {
 }
 
 async function alertHttpIfNeeded() {
-        let whiteList = await getLocalStorage('whiteList');
-        if (!whiteList) {
-            whiteList = {};
-        }
+    let whiteList = await getLocalStorage('whiteList');
+    if (!whiteList) {
+        whiteList = {};
+    }
 
-        //ドメインがホワイトリストに含まれている
-        if (window.location.hostname in whiteList) {
-            return;
-        }
+    //ドメインがホワイトリストに含まれている
+    if (window.location.hostname in whiteList) {
+        return;
+    }
 
-        let result = await swal({
-            text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
-            type: 'warning',
-            input: 'checkbox',
-            inputValue: 0,
-            inputPlaceholder: '今後このページで警告を表示しない',
-            confirmButtonText: '確認'
-        });
-        //”今後このページで警告を表示しない”がチェックされている
-        if (result === 1){
-            whiteList[window.location.hostname] = window.location.href;
-            await setLocalStorage({ 'whiteList': whiteList });
-        }
+    let result = await swal({
+        text: 'データ通信方式がhttpです。外部からパスワード等が閲覧できる可能性があります。',
+        type: 'warning',
+        input: 'checkbox',
+        inputValue: 0,
+        inputPlaceholder: '今後このページで警告を表示しない',
+        confirmButtonText: '確認'
+    });
+    //”今後このページで警告を表示しない”がチェックされている
+    if (result === 1) {
+        whiteList[window.location.hostname] = window.location.href;
+        await setLocalStorage({'whiteList': whiteList});
+    }
 }
 
 async function registerDomainIfNeeded() {
@@ -63,7 +63,7 @@ async function registerDomainIfNeeded() {
     }).then(() => {
         //登録ボタンが押された
         domainList[window.location.hostname] = window.location.href;
-        setLocalStorage({ 'domainList': domainList });
+        setLocalStorage({'domainList': domainList});
     });
 }
 
