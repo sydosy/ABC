@@ -1,0 +1,23 @@
+{
+  "name": "Anti Bleeding ChromeExtension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_title": "ABC"
+  },
+  "content_scripts": [{
+    "matches": [ "http://*/*", "https://*/*" ],
+    "css" : ["styles/sweetalert2.min.css"],
+    "js": [ "scripts/sweetalert2.min.js", "scripts/content.js" ]
+  }],
+  "permissions": [
+    "storage"
+  ]
+}
