@@ -8,8 +8,13 @@
     ],
     "persistent": false
   },
+  "icons": {
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
   "browser_action": {
-    "default_icon": "images/icon.png",
+    "default_icon": "images/icon_19.png",
     "default_title": "ABC"
   },
   "content_scripts": [{
