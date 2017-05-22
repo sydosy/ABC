@@ -75,7 +75,7 @@ function setTable(list, table) {
     table.replaceWith(newTable);
 
     //mdlの再適用
-    componentHandler.upgradeDom()
+    componentHandler.upgradeDom();
 }
 
 function deleteDomain(list, tr) {
