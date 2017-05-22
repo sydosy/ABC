@@ -53,6 +53,9 @@ function setTable(list, tbody) {
             text: domain
         })));
     }
+
+    //mdlの再適用
+    componentHandler.upgradeDom();
 }
 
 function deleteDomain(list, tr) {
